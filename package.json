@@ -1,0 +1,35 @@
+{
+  "name": "landing-jieda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run staticAssets && webpack -p",
+    "dev": "webpack-dev-server --inline --hot",
+    "prod": "NODE_ENV=prod webpack-dev-server",
+    "staticAssets": "rm -rf dist && cp -r public dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruoru/landing-jieda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruoru/landing-jieda/issues"
+  },
+  "homepage": "https://github.com/ruoru/landing-jieda#readme",
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.1.1",
+    "babel-preset-latest": "^6.24.1",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.5.4",
+    "webpack-dev-server": "^2.7.1"
+  }
+}
