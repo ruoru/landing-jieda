@@ -2,10 +2,12 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: {
+        app: './src/index.jsx',
+    },
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: 'js/[name].bundle.[hash:6].js',
+        filename: 'js/[name]-[hash:6].js',
     },
     module: {
         loaders: [
@@ -16,7 +18,7 @@ module.exports = {
                 exclude: [/node_modules/],  //不通过该babel处理，提高打包速度。
                 include: [/src/],           //指定打包范围
                 query: {
-                    presets: ['latest'],
+                    presets: ['latest'],    //指定最后一个版本
                 },
             },
             //处理css文件
@@ -59,12 +61,15 @@ module.exports = {
     },
     plugins: [
         new htmlWebpackPlugin({
-            template: 'public/index.html',
+            template: './public/index.html',
             filename: 'index.html',
             inject: 'body',
+            chunks: ['app'],
+            publicURL: './assert'
         }),
     ],
     devServer: {
+        open: true,
         contentBase: path.join(__dirname, "dist"),
         compress: true,    //启用所有服务的gzip压缩
         host: '0.0.0.0',
